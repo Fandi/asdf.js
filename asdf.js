@@ -80,7 +80,13 @@
 
 	function validateDescriptor(descriptor) {
 		if (descriptor == null) {
-			descriptor = DEFAULT_DESCRIPTOR;
+			descriptor = {
+				type: DEFAULT_DESCRIPTOR.type,
+				value: DEFAULT_DESCRIPTOR.value,
+				writable: DEFAULT_DESCRIPTOR.writable,
+				nullable: DEFAULT_DESCRIPTOR.nullable,
+				extensible: DEFAULT_DESCRIPTOR.extensible,
+			};
 		} else {
 			if (descriptor.type == null) {
 				descriptor.type = DEFAULT_DESCRIPTOR.type;
