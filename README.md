@@ -11,11 +11,11 @@ obj.defineProperty(name, descriptor);
 
 #### Parameters ####
 
-*__name__*
+*__name:String__*
 
 The property name. Note: Property redefinition is disabled, i.e. if property name is already defined and property descriptor's configurable is set to false, error will be thrown.
 
-*__descriptor__*
+*__descriptor:Object?__*
 
 A descriptor object consisting:
 
@@ -27,9 +27,9 @@ A descriptor object consisting:
 
 *__nullable:Boolean?__* default is true. Note: will throw error if configured value on descriptor is set to false.
 
-*__extensible:Boolean?__* default is false. Note: ignored if type configuration is any non-extensible type (e.g. String, Number, Boolean, etc.) Reference: [ECMA-262, Edition 5 - section 8.6.2 - Object Internal Properties and Methods](http://www.ecmascript.org/docs.php)
+*__extensible:Boolean?__* default is false. Note: ignored if type configuration is any non-extensible type (e.g. String, Number, Boolean, etc.)
 
-Default configuration will be used if not provided.
+Default configuration will be used if not provided. Reference: [ECMA-262, Edition 5 - section 8.6.2 - Object Internal Properties and Methods](http://www.ecmascript.org/docs.php)
 
 #### Example ####
 
