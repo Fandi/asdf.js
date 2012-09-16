@@ -35,7 +35,9 @@
 		if (nullable === false && value == null) {
 			throw new Error();
 		} else {
-			if (value != null) {
+			if (value == null) {
+				return null;
+			} else {
 				switch (type) {
 					case Object:
 						return value;
@@ -72,8 +74,6 @@
 				}
 
 				throw new TypeError();
-			} else {
-				return value;
 			}
 		}
 	};
@@ -89,7 +89,27 @@
 			};
 		} else {
 			if (descriptor.type == null) {
-				descriptor.type = DEFAULT_DESCRIPTOR.type;
+				if (descriptor.value == null) {
+					descriptor.type = DEFAULT_DESCRIPTOR.type;
+				} else {
+					if (typeof descriptor.value === 'boolean') {
+						descriptor.type = Boolean;
+					} else {
+						if (typeof descriptor.value === 'number') {
+							descriptor.type = Number;
+						} else {
+							if (typeof descriptor.value === 'string') {
+								descriptor.type = String;
+							} else {
+								if (typeof descriptor.value === 'function') {
+									descriptor.type = Function;
+								} else {
+									descriptor.type = descriptor.value.constructor;
+								}
+							}
+						}
+					}
+				}
 			} else {
 				descriptor.type = validateType(Function, descriptor.type, false);
 			}
@@ -155,7 +175,18 @@
 		}
 	};
 
-	Object.defineProperty(Object.prototype, 'defineProperty', {
-		value: defineProperty
+	function defineProperties(properties) {
+		for (var key in properties) {
+			this.defineProperty(key, properties[key]);
+		}
+	};
+
+	Object.defineProperties(Object.prototype, {
+		defineProperty: {
+			value: defineProperty
+		},
+		defineProperties: {
+			value: defineProperties
+		}
 	});
 })();
