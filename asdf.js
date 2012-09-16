@@ -114,22 +114,22 @@
 				descriptor.type = validateType(Function, descriptor.type, false);
 			}
 
+			if (descriptor.nullable == null) {
+				descriptor.nullable = DEFAULT_DESCRIPTOR.nullable;
+			} else {
+				descriptor.nullable = validateType(Boolean, descriptor.nullable, false);
+			}
+
 			if (descriptor.value == null) {
 				descriptor.value = DEFAULT_DESCRIPTOR.value;
 			} else {
-				descriptor.value = validateType(descriptor.type, descriptor.value, false);
+				descriptor.value = validateType(descriptor.type, descriptor.value, descriptor.nullable);
 			}
 
 			if (descriptor.writable == null) {
 				descriptor.writable = DEFAULT_DESCRIPTOR.writable;
 			} else {
 				descriptor.writable = validateType(Boolean, descriptor.writable, false);
-			}
-
-			if (descriptor.nullable == null) {
-				descriptor.nullable = DEFAULT_DESCRIPTOR.nullable;
-			} else {
-				descriptor.nullable = validateType(Boolean, descriptor.nullable, false);
 			}
 
 			if (descriptor.extensible == null) {
