@@ -44,14 +44,6 @@ function Person(id, name) {
 		type: String,
 		value: name
 	});
-	this.defineProperty('clone', {
-		type: Function,
-		value: function clone() {
-			return new Person(this.id, this.name);
-		},
-		writable: false,
-		extensible: false
-	});
 	this.defineProperty('equals', {
 		type: Function,
 		value: function equals(person) {
@@ -64,10 +56,18 @@ function Person(id, name) {
 
 var person1 = new Person('123', 'John Doe');
 
+person1.defineProperty('clone', {
+	type: Function,
+	value: function clone() {
+		return new Person(this.id, this.name);
+	},
+	writable: false,
+	extensible: false
+});
+
 var person2 = person1.clone();
 person2.id = 'abc';
 person2.name = 'Jane Doe';
 
 console.assert(!person1.equals(person2), 'Semprul!')
-
 ```
