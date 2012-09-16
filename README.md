@@ -71,3 +71,7 @@ person2.name = 'Jane Doe';
 
 console.assert(!person1.equals(person2), 'Semprul!')
 ```
+
+#### Disclaimer ####
+
+Tested (only) on Mozilla Firefox 15.0.1
