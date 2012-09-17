@@ -19,16 +19,16 @@ Descriptor is an object consisting the following properties:
 Default is Object. Property configured as Object will accept any value if nullable is set to true.
 
 *value? : any*  
-Default is null. Will throw error if value type is not the same as the type configured on descriptor.
+Initial value of the property. Default is null. Will throw error if value type is not the same as the type configured on descriptor.
 
 *writable? : Boolean*  
-Default is true.
+Default is false if value is a function, else true.
 
 *nullable? : Boolean*  
-Default is true. Will throw error if set to false and configured value is null.
+Default is true. Will throw error if set to false and the initial value configured on descriptor is set to null.
 
 *extensible? : Boolean*  
-Default is true. Will be ignored if configured type is set to any non-extensible type (e.g. String, Number, Boolean.)
+Default is false if value is a function, else true. Will be ignored if configured type is set to any non-extensible type (e.g. String, Number, Boolean.) [More about extensible (section 8.6.2, Object Internal Properties and Methods)](http://www.ecmascript.org/docs.php)
 
 #### Example Usage ####
 ```html
@@ -76,7 +76,7 @@ console.log(person1.equals(person2));	/* output is true */
 ```
 
 #### Reference ####
-[ECMA-262, Edition 5 - section 8.6.2 - Object Internal Properties and Methods](http://www.ecmascript.org/docs.php)
+[ECMA-262, Edition 5](http://www.ecmascript.org/docs.php)
 
 #### Disclaimer ####
 Provided as is. Currently tested (only) on Mozilla Firefox 15.0.1

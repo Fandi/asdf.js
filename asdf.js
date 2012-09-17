@@ -127,13 +127,21 @@
 			}
 
 			if (descriptor.writable == null) {
-				descriptor.writable = DEFAULT_DESCRIPTOR.writable;
+				if (typeof descriptor.value === 'function') {
+					descriptor.writable = false;
+				} else {
+					descriptor.writable = DEFAULT_DESCRIPTOR.writable;
+				}
 			} else {
 				descriptor.writable = validateType(Boolean, descriptor.writable, false);
 			}
 
 			if (descriptor.extensible == null) {
-				descriptor.extensible = DEFAULT_DESCRIPTOR.extensible;
+				if (typeof descriptor.value === 'function') {
+					descriptor.extensible = false;
+				} else {
+					descriptor.extensible = DEFAULT_DESCRIPTOR.extensible;
+				}
 			} else {
 				descriptor.extensible = validateType(Boolean, descriptor.extensible, false);
 			}
