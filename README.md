@@ -33,34 +33,33 @@ Default is false if value is a function, else true. Will be ignored if configure
 #### Example Usage ####
 ```html
 function Person(id, name) {
-	this.defineProperty('id', {
-		type: String,
-		value: id,
-		writable: false
-	});
-	this.defineProperty('name', {
-		type: String,
-		value: name
-	});
-	this.defineProperty('equals', {
-		value: function equals(person) {
-			return this.id === person.id;
+	this.defineProperties({
+		id: {
+			type: String,
+			value: id,
+			writable: false,
+			nullable: false
 		},
-		writable: false,
-		extensible: false
-	});
-	this.defineProperty('clone', {
-		value: function clone() {
-			return new Person(this.id, this.name);
+		name: {
+			type: String,
+			value: name
 		},
-		writable: false,
-		extensible: false
+		equals: {
+			value: function equals(person) {
+				return this.id === person.id;
+			}
+		},
+		clone: {
+			value: function clone() {
+				return new Person(this.id, this.name);
+			}
+		}
 	});
 };
 
 var person1 = new Person('123', 'John Doe');
-
 var person2 = person1.clone();
+
 person2.defineProperty('semprul', {
 	value: function semprul(person) {
 		return this.name === person.name;
