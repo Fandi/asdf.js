@@ -85,30 +85,14 @@
 				value: DEFAULT_DESCRIPTOR.value,
 				writable: DEFAULT_DESCRIPTOR.writable,
 				nullable: DEFAULT_DESCRIPTOR.nullable,
-				extensible: DEFAULT_DESCRIPTOR.extensible,
+				extensible: DEFAULT_DESCRIPTOR.extensible
 			};
 		} else {
 			if (descriptor.type == null) {
 				if (descriptor.value == null) {
 					descriptor.type = DEFAULT_DESCRIPTOR.type;
 				} else {
-					if (typeof descriptor.value === 'boolean') {
-						descriptor.type = Boolean;
-					} else {
-						if (typeof descriptor.value === 'number') {
-							descriptor.type = Number;
-						} else {
-							if (typeof descriptor.value === 'string') {
-								descriptor.type = String;
-							} else {
-								if (typeof descriptor.value === 'function') {
-									descriptor.type = Function;
-								} else {
-									descriptor.type = descriptor.value.constructor;
-								}
-							}
-						}
-					}
+					descriptor.type = descriptor.value.constructor;
 				}
 			} else {
 				descriptor.type = validateType(Function, descriptor.type, false);
